@@ -18,15 +18,11 @@ function geoFindMe() {
     var tb = getQueryVariable("tb");
     var tbTxt = '';
     if(tb){
-      tbTxt = '<a class="button" href="sms://' + tb + '?body=' + utmString + '">Text your location back</a>';
+      tbTxt = '<a class="button" href="sms://' + tb + '&body=' + utmString + '">Text your location back</a>';
     }
 
     output.innerHTML = '<h1>Your location is: ' + utmString + '</h1><p>With an accuracy of ' + acc + ' meters</p>' + tbTxt;
 
-    document.addEventListener('DOMContentLoaded', (function () {
-      link = new SMSLink.link();
-      link.replaceAll();
-    }), false);
   }
 
   function error() {
