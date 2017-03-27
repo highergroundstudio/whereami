@@ -15,10 +15,14 @@ function geoFindMe() {
     acc = position.coords.accuracy;
 
     // Get textback number from link
-    var tb = getQueryVariable("tb");
-    var tbTxt = '';
+    var tb = getQueryVariable("tb"),
+        tbTxt = '',
+        sep = '?';
     if(tb){
-      tbTxt = '<a class="button" href="sms://' + tb + '&body=' + utmString + '">Text your location back</a>';
+      if(isIos()){
+        sep = '&';
+      }
+      tbTxt = '<a class="button" href="sms://' + tb + sep + 'body=' + utmString + '">Text your location back</a>';
     }
 
     output.innerHTML = '<h1>Your location is: ' + utmString + '</h1><p>With an accuracy of ' + acc + ' meters</p>' + tbTxt;
@@ -43,6 +47,17 @@ function getQueryVariable(variable)
     if(pair[0] == variable){return pair[1];}
   }
   return(false);
+}
+function isIos() {
+  var userAgent = window.navigator.userAgent,
+      platform = window.navigator.platform,
+      iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+
+  if (iosPlatforms.indexOf(platform) !== -1) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 geoFindMe();
