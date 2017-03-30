@@ -14,7 +14,7 @@ function geoFindMe() {
     //Get location
     var latLngPLS = new LatLng(position.coords.latitude, position.coords.longitude);
     //What is our accuracy?
-    var acc = position.coords.accuracy;
+    var acc = Math.round(position.coords.accuracy);
     //Convert to UTM
     var utmPLS = latLngPLS.toUTMRef(new LatLng(position.coords.latitude, position.coords.longitude));
     //Convert UTM to string
